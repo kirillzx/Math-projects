@@ -19,7 +19,7 @@ def get_neighbours(cell, world):
                                 neighbours.append(neighbour)
     return neighbours
 
-def breadth_first(world, start):
+def wave(world, start):
     world[start[0]][start[1]] = 1
     queue = []
     queue.append(start)
@@ -65,6 +65,6 @@ world = [[-1, -1, -1, -1, -1, -1],
 start = (1, 2) # list of 2 values [row, col]
 goal = (4, 4) # list of 2 values [row, col]
 
-matrix = breadth_first(world, start)
+matrix = wave(world, start)
 pr_matrix(matrix)
 print(get_path(matrix, start, goal))
