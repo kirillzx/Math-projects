@@ -1,0 +1,94 @@
+% \documentclass[12pt]{article}
+%  \usepackage[margin=1in]{geometry}
+% \usepackage{amsmath, amsthm, amssymb, amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+% \pagestyle{fancy}
+% \usepackage{cmap}
+% \usepackage[T2A]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[english, russian]{babel}
+%
+% \newtheorem*{exersize}{Упражнение}
+% \newtheorem{lemma}{Lemma}[section]
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem*{consequence}{Следствие}
+% \newtheorem*{statement}{Statement}
+% \newtheorem*{property}{Property}
+% \newtheorem*{fact}{Fact}
+%
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem*{problem}{Задача}
+% \newtheorem*{example}{Пример}
+%
+% \theoremstyle{remark}
+% \newtheorem*{note}{Замечание}
+% \setlength{\parindent}{0pt}
+% \setlength{\headheight}{35pt}
+%
+% \begin{document}
+\section{Статические модели}
+\subsection{Производственная функция Кобба-Дугласа}
+
+\begin{definition}
+  Производственная функция - функция выражающая зависимость между затратами ресурсов и объемом выпуска.
+\end{definition}
+Пусть $\overline{X}$ - вектор используемых ресурсов, $\overline{Y}$ - объем выпуска продукции каждого вида.
+\begin{property}{О производственной функции}
+\begin{enumerate}
+  \item $F(x_1,...,x_n)$ является достаточно гладкой, т.е. $F\in C^2$
+  \item $F(x_1,...,x_n)$ - возрастающая по каждому аргументу $\dfrac{\partial F}{\partial x_i}>0 \forall \;i$
+  \item выпуск по каждому аргументу не ограничен
+  \item предельная производительность убывает $ \dfrac{\partial^2 F}{\partial x_i^2}>0 \forall \;i$
+\end{enumerate}
+\end{property}
+
+\begin{definition}{Однородная функция}
+  \\$F(\lambda x_1, ...,\lambda x_n)=\lambda F(x_1,...,x_n)$
+\end{definition}
+
+Пусть $Y$ - это ВВП, $K$ - основные производственные фонды, $L$ – число занятых.
+ Тогда определим функцию $Y=AK^{\alpha} L^{\beta},(A>0,0<\alpha,\beta<1)$.
+Для оценки параметров $A,\alpha,\beta$ воспользуемся методом наименьших квадратов $\sum_{i=1}^n(a+b x_i-y_i )^2\to\min$. Также необходимо линеаризовать данные параметры при помощи натурального алгоритма. После чего получим следующую целевую функцию.
+\begin{equation}
+  S(A,\alpha,\beta)=\sum_{i=1}^M (\ln{A}+\alpha\ln{K_i}+\beta\ln{L_i}-\ln{Y_i})^2 \to\min
+\end{equation}
+Теперь нужно приравнять частные производные к нулю по каждому аргументу и решить систему линейных уравнений (3).
+\begin{gather}
+  \begin{cases}
+  \dfrac{\partial S}{\partial \ln{A}}=0\\\\
+  \dfrac{\partial S}{\partial \alpha}=0\\\\
+  \dfrac{\partial S}{\partial \beta}=0
+\end{cases};\\
+\begin{cases}
+  M\ln{A}+\alpha \sum_{i=1}^M\ln{K_i}+\beta \sum_{i=1}^M\ln{L_i}=\sum_{i=1}^M\ln{Y_i}\\\\
+  ln{A}\sum_{i=1}^M\ln{K_i}+\alpha \sum_{i=1}^M\ln{K_i}^2+\beta\sum_{i=1}^M\ln{K_i}\ln{L_i}=\sum_{i=1}^M\ln{Y_i}\ln{K_i}\\\\
+  ln{A}\sum_{i=1}^M\ln{L_i}+\alpha \sum_{i=1}^M\ln{K_i}\ln{L_i}+\beta\sum_{i=1}^M\ln{L_i}^2=\sum_{i=1}^M\ln{Y_i}\ln{L_i}
+  \end{cases}
+\end{gather}
+
+\subsection{Модель Леонтьева (Межотраслевой баланс)}
+Пусть $x_{ij}$ - промежуточный продукт, т.е. отрасль $i$ изготавливает продукт для отрасли $j$\\
+$X_i$ - валовый продукт отрасли $i$\\
+$Y_i$ - конечный продукт отрасли $i (i=\overline{1,n})$.\\
+Тогда валовый выпуск определяется по следующей формуле.
+\begin{equation}
+X_i=\sum_{j=1}^nx_{ij}+Y_i
+\end{equation}
+Матрица прямых затрат определяется, как $a_{ij}=x_{ij}/X_j$ . Тогда вектор валового выпуска можно определить,
+ как $X=AX+Y\Rightarrow X=(E-A)^{-1} Y$, а конечный продукт $Y=(E-A)X$.
+
+ \begin{definition}
+   Если хотя бы для одного положительного $Y$ уравнение межотраслевого баланса имеет неотрицательное решение, то матрица $A$ продуктивна.
+ \end{definition}
+ \begin{definition}
+  Матрица $A$ продуктивна $\iff$ $(E-A)$ имеет $n$ положительных последовательностей главных миноров.
+ \end{definition}
+ \begin{definition}
+  Матрица $A$ продуктивна $\iff$ когда матричный ряд $E+A+A^2+...+A_k+...$ сходится.
+ \end{definition}
+ \begin{definition}
+  Матрицей полных затрат называется обратная матрица Леонтьева $B=(E-A)^{-1}$
+ \end{definition}
+
+
+% \end{document}

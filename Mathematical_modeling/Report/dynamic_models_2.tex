@@ -1,0 +1,102 @@
+% \documentclass[12pt]{article}
+%  \usepackage[margin=1in]{geometry}
+% \usepackage{amsmath, amsthm, amssymb, amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+% \pagestyle{fancy}
+% \usepackage{cmap}
+% \usepackage[T2A]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[russian, english]{babel}
+% \usepackage{caption}
+%
+% \newtheorem*{exersize}{Упражнение}
+% \newtheorem*{lemma}{Лемма}
+% \newtheorem*{consequence}{Следствие}
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem*{statement}{Утверждение}
+% \newtheorem{property}{Свойство}
+% \newtheorem*{fact}{Факт}
+%
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem*{problem}{Задача}
+% \newtheorem*{example}{Пример}
+%
+% \theoremstyle{remark}
+% \newtheorem*{note}{Замечание}
+% \setlength{\parindent}{0pt}
+% \setlength{\headheight}{35pt}
+%
+%
+% \begin{document}
+\section{Бифуркации динамических систем}
+\begin{definition}
+Бифуркация - качественное изменение фазового портрета при изменении параметров системы.
+\end{definition}
+\begin{theorem}{Бифуркация Хопфа}\\
+  Пусть есть система дифференциальных уравнений
+  \begin{equation}
+    \begin{cases}
+      \dot{x}_1=X_1(x_1,...,x_n,\mu) \qquad X_1(0,...,0,\mu)=0\\
+      \dot{x}_2=X_2(x_1,...,x_n,\mu) \qquad X_2(0,...,0,\mu)=0
+    \end{cases}
+  \end{equation}
+$\lambda_1(\mu_0),\lambda_2(\mu_0)$ - чисто мнимые корни. Точка $(0,0)$ - асимптотически устойчива при $\mu_0$ и
+$\dfrac{\partial}{\partial \mu}\{Re(\lambda_i(\mu))|_{\mu=\mu_0}\}>0$.\\
+Тогда \begin{enumerate}
+  \item $\mu_0$ - точка бифуркации
+  \item $\exists$ интервал $\mu\in(\mu_1,\mu_0)$ такой, что $(0;0)$ - устойчивый фокус
+  \item $\exists$ интервал $\mu\in(\mu_0,\mu_2)$ такой, что $(0;0)$ - неустойчивый фокус, окруженный предельным циклом
+\end{enumerate}
+\end{theorem}
+
+\subsection{Аттрактор Лоренца}
+\begin{equation}
+  \begin{cases}
+    \dot{x}=-ax+ay\\
+    \dot{y}=rx-y-xz\\
+    \dot{z}=-bz+xy \qquad a,r,b>0
+  \end{cases}
+\end{equation}
+$r$ - управляющий переменный параметр\\
+$(0<r<1)$ - одна критическая точка\\
+$r\to 1$ - критическое замедление\\
+$r=1.345$ - узлы переходят в фокусы\\
+$r>24$ - хаос
+
+\subsection{Маятник Фуко}
+Пусть $L$ - длина нити маятника\\
+$\omega$ - угловая скорость\\
+$g$ - ускорение свободного падения\\
+$x,y$ - координаты\\
+$v_x, v_y$ - скорости
+\begin{align}
+  &\dfrac{d v_x}{dt} = 2v_y\omega+\omega^2x-g\dfrac{x}{L}\notag\\
+  &\dfrac{d v_y}{dt} = -2v_x\omega+\omega^2y-g\dfrac{y}{L}\\
+  &\dfrac{d x}{dt} = v_x\notag\\
+  &\dfrac{d y}{dt} = v_y\notag
+\end{align}
+\subsection{Аттрактор Рикитаки}
+\begin{align}
+  &\dfrac{d x}{dt} = -\mu x+yz \notag\\
+  &\dfrac{d y}{dt} = (z-a)x-\mu y\\
+  &\dfrac{d z}{dt} = 1-xy\notag
+\end{align}
+
+\begin{figure}[ht]
+\center{\includegraphics[scale=0.3]{images/image1.png}}
+\caption{Test image}
+\label{figure:image}
+\end{figure}
+% \begin{figure}[h]
+% \begin{minipage}[h]{0.49\linewidth}
+% \center{\includegraphics[width=0.5\linewidth]{images/image1.png} \\ а)}
+% \end{minipage}
+% \hfill
+% \begin{minipage}[h]{0.49\linewidth}
+% \center{\includegraphics[width=0.5\linewidth]{images/image1.png} \\ б)}
+% \end{minipage}
+% \caption{Зависимость сигнала от шума для данных.}
+% \label{ris:image1}
+% \end{figure}
+
+% \end{document}

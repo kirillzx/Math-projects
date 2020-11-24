@@ -1,0 +1,160 @@
+% \documentclass[12pt]{article}
+%  \usepackage[margin=1in]{geometry}
+% \usepackage{amsmath, amsthm, amssymb, amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+% \pagestyle{fancy}
+% \usepackage{cmap}
+% \usepackage[T2A]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[english, russian]{babel}
+%
+% \newtheorem*{exersize}{Упражнение}
+% \newtheorem*{lemma}{Лемма}
+% \newtheorem*{theorem}{Теорема}
+% \newtheorem*{consequence}{Следствие}
+% \newtheorem*{statement}{Утверждение}
+% \newtheorem{property}{Свойство}
+% \newtheorem*{fact}{Факт}
+%
+% \theoremstyle{definition}
+% \newtheorem*{definition}{Определение}
+% \newtheorem*{problem}{Задача}
+% \newtheorem*{example}{Пример}
+%
+% \theoremstyle{remark}
+% \newtheorem*{note}{Замечание}
+% \setlength{\parindent}{0pt}
+% \setlength{\headheight}{35pt}
+%
+%
+% \begin{document}
+
+\section{Динамические модели}
+\subsection{Модель Солоу}
+Пусть имеется замкнутая односекторная экономика.\\
+$Y$ - ВВП\\
+$K$ - капитал\\
+$I$ - инвестиции\\
+$C$ - конечное потребление\\
+$L$ - трудовые ресурсы\\
+Имеется баланс $Y=C+I$. Зависимость ВВП от ресурсов выражается функцией Кобба-Дугласа.
+\begin{align}
+  &Y=AK^{\alpha}L^{\beta}\notag\\
+  &Y=C+I\notag\\
+  &I=sY\\
+  &\dfrac{\partial L}{\partial t}=\gamma L \qquad \qquad\quad\,(L(0)=L_0)\notag\\
+  &\dfrac{\partial K}{\partial t}=-\mu K+I \qquad(K(0)=K_0)\notag
+\end{align}
+где $ \gamma$ - темп прироста трудовых ресурсов, $s$ - склонность к сбережению, $A$ - научно-технический прогресс.
+Пусть $y=Y/L,k=K/L,i=I/L$. Тогда получим модель Солоу в относительных показателях.
+\begin{equation}
+  \frac{\partial k}{\partial t}=-(\lambda+\mu)k+sAk^{\alpha}
+\end{equation}
+Равновесие равно $\hat{k}=(\dfrac{sA}{\lambda+\mu})^{\frac{1}{1-\alpha}}$
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Интервалы&Рост\\
+  \hline
+  $\bigg(0;(\dfrac{\alpha sA}{\lambda+\mu})^{\frac{1}{1-\alpha}}\bigg)$&Ускоренный рост\\
+  \hline
+  $\bigg((\dfrac{\alpha sA}{\lambda+\mu})^{\frac{1}{1-\alpha}};(\dfrac{sA}{\lambda+\mu})^{\frac{1}{1-\alpha}}\bigg)$&Насыщенный рост\\
+  \hline
+  $\bigg((\dfrac{sA}{\lambda+\mu})^{\frac{1}{1-\alpha}};+\infty\bigg)$&Падение\\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Конечно-разностное представление}:
+$k(t+\Delta)=k(t)+\Delta t(-(\lambda+\mu)k(t)+sAk(t)^{\alpha})$
+
+\subsection{SIR модель}
+Пусть $S(t)$ - число восприимчивых к инфекции\\
+$I(t)$ - число инфицированных\\
+$R(t)$ - число переболевших инфекцией\\
+$N$ - число популяции\\
+$\beta$ - коэффициент интенсивности контактов \\
+$\gamma$ - коэффициент интенсивности выздоровления
+\begin{align}
+  &\dfrac{d S}{dt}=\dfrac{-\beta IS}{N}\notag\\
+  &\dfrac{d I}{dt}=\dfrac{\beta IS}{N}-\gamma I\\
+  &\dfrac{d R}{dt}=\gamma I\notag
+\end{align}
+
+\subsection{SEIRD модель}
+$E(t)$ - число носителей заболевания\\
+$D$ - число умерших\\
+$\mu$ - уровень смертности\\
+$\delta=\dfrac{1}{\text{ср.инк.период}}$
+\begin{align}
+  &\dfrac{d S}{dt}=\dfrac{-\beta IS}{N}\notag\\
+  &\dfrac{d E}{dt}=\dfrac{\beta IS}{N}-\delta E\notag\\
+  &\dfrac{d I}{dt}=\delta E-\gamma I-\mu I\\
+  &\dfrac{d R}{dt}=\gamma I\notag\\
+  &\dfrac{d D}{dt}=\mu I\notag
+\end{align}
+
+\subsection{Модель Лотки-Вольтерра}
+\begin{equation}
+  \begin{cases}
+    \dot{x}=ax-bxy\\
+    \dot{y}=-cy+dxy
+  \end{cases}
+\end{equation}
+$x(t)$ - число жертв\\
+$y(t)$ - число хищников\\
+$a$ - коэффициент рождаемости жертв\\
+$b$ - коэффициент убыли жертв\\
+$c$ - коэффициент убыли хищников \\
+$d$ - коэффициент рождаемости хищников\\
+Первой стационарной точкой является $(0,0)$. Возьмем из системы линейную часть и составим матрицу.
+\begin{equation}
+  \begin{vmatrix}
+  a-\lambda&0\\0&-c-\lambda\;
+\end{vmatrix}
+\end{equation}
+Решая данной характеристическое уравнение получим $\lambda_1=a, \lambda_2=-c\Rightarrow$ данная точка является седлом.
+Теперь приравняем правые части системы к 0 и решим ее. Получим вторую стационарную точку $\overline{x}=\dfrac{c}{d},
+\overline{y}=\dfrac{a}{b}$. Построим матрицу Якоби, подставив $\overline{x},\overline{y}$.
+\begin{equation}
+  \begin{pmatrix}
+    0&-\dfrac{bc}{d}\\-\dfrac{ad}{b}&0
+  \end{pmatrix}
+\end{equation}
+Решая характеристическое уравнение $\lambda^2+ac=0$, получаем два мнимых корня, что свидетельствует о том что данная
+стационарная точка является центром.
+
+\subsection{Модель взаимодействия двух конкурирующих видов}
+$x_1$ - количество особей первого типа
+$x_2$ - количество особей второго типа
+\begin{equation}
+  \begin{cases}
+    \dot{x}_1=a_1x_1-b_{11}x_1^2-b_{12}x_1x_2\\
+    \dot{x}_2=a_2x_2-b_{21}x_1x_2-b_{22}x_2^2
+  \end{cases}
+\end{equation}
+Приравняем к 0 правые части системы.
+\begin{equation}
+  \begin{cases}
+    x_1(a_1-b_{11}x_1-b_{12}x_2)=0\\
+    x_2(a_2-b_{21}x_1-b_{22}x_2)=0
+  \end{cases}
+\end{equation}
+Получим 4 стационарные точки.
+\begin{gather}
+  \begin{cases}
+    x_1=0\\
+    x_2=0
+  \end{cases};
+  \begin{cases}
+    x_1=0\\
+    x_2=\dfrac{a_2}{b_{22}}
+  \end{cases};\\
+  \begin{cases}
+    x_1=\dfrac{a_1}{b_{11}}\\
+    x_2=0
+  \end{cases};
+  \begin{cases}
+    x_1=\dfrac{a_2b_{12}-a_1b_{22}}{b_{12}b_{21}-b_{22}b_{11}}\\
+    x_2=\dfrac{a_1b_{21}-a_2b_{11}}{b_{12}b_{21}-b_{22}b_{11}}
+  \end{cases}\notag
+\end{gather}
+% \end{document}

@@ -1,0 +1,86 @@
+% \documentclass[12pt]{article}
+%  \usepackage[margin=1in]{geometry}
+% \usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+% \pagestyle{fancy}
+% \usepackage{cmap}
+% \usepackage[T2A]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[english,russian]{babel}
+% \setlength{\parindent}{5ex}
+% \setlength{\headheight}{35pt}
+%
+% \lhead{Mathematical modeling}
+% \rhead{Kirill Zakharov}
+%
+% \begin{document}
+\subsection{Переход к полярным координатам}
+\begin{equation}
+\begin{cases}
+  \dot{x}_1=x_1-x_2-x_1(x_1^2+x_2^2)\\
+  \dot{x}_2=x_1+x_2-x_2(x_1^2+x_2^2)
+\end{cases}
+\end{equation}
+Перейдем к полярным координатам.
+\begin{equation}
+  \begin{cases}
+    x_1(t)=r(t)\cos{\varphi(t)}\\
+    x_2(t)=r(t)\sin{\varphi(t)}
+  \end{cases}
+\end{equation}
+Выполним подстановку и получим выражения для $\dot{r}$ и $\dot{\varphi}$.
+\begin{align}
+  &\begin{cases}
+    \dot{r}\cos{\varphi}+r\dot{\varphi}(-\sin{\varphi})=r\cos{\varphi}-r\sin{\varphi}-r^3\cos{\varphi}\;\big|*\cos{\varphi}\\
+    \dot{r}\sin{\varphi}+r\dot{\varphi}\cos{\varphi}=r\cos{\varphi}+r\sin{\varphi}-r^3\sin{\varphi}\quad\quad\big|*\sin{\varphi}
+  \end{cases}+\\
+  &\begin{cases}
+    \dot{r}\cos^2{\varphi}-r\dot{\varphi}\sin{\varphi}\cos{\varphi}=
+    r\cos^2{\varphi}-r\cos{\varphi}\sin{\varphi}-r^3\cos^2{\varphi}\\
+    \dot{r}\sin^2{\varphi}+r\dot{\varphi}\cos{\varphi}\sin{\varphi}=
+    r\sin{\varphi}\cos{\varphi}+r\sin^2{\varphi}-r^3\sin^2{\varphi}
+  \end{cases}
+\end{align}
+Тем самым получаем выражение для $\dot{r}(t)=r(t)(1-r^2(t))$. Теперь умножим первое уравнения на $sin{\varphi}$,
+второе на $cos{\varphi}$ и вычтем из первого второе.
+\begin{align}
+  &\begin{cases}
+    \dot{r}\cos{\varphi}+r\dot{\varphi}(-\sin{\varphi})=r\cos{\varphi}-r\sin{\varphi}-r^3\cos{\varphi}\;\big|*\sin{\varphi}\\
+    \dot{r}\sin{\varphi}+r\dot{\varphi}\cos{\varphi}=r\cos{\varphi}+r\sin{\varphi}-r^3\sin{\varphi}\quad\quad\big|*\cos{\varphi}
+  \end{cases}-\\
+  &\begin{cases}
+    \dot{r}\cos{\varphi}\sin{\varphi}-r\dot{\varphi}\sin^2{\varphi}=
+    r\cos{\varphi}\sin{\varphi}-r\sin^2{\varphi}-r^3\cos{\varphi}\sin{\varphi}\\
+    \dot{r}\sin{\varphi}\cos{\varphi}+r\dot{\varphi}\cos^2{\varphi}=
+    r\cos^2{\varphi}+r\sin{\varphi}\cos{\varphi}-r^3\sin{\varphi}\cos{\varphi}
+  \end{cases}
+\end{align}
+Таким образом получим систему (1) в полярных координатах.
+\begin{equation}
+  \begin{cases}
+    \dot{r}=r(1-r^2)\\
+    \dot{\varphi}=1
+  \end{cases}
+\end{equation}
+Стационарные точки для данной системы $r=0$ и $r=1$.\\
+Устойчивый вариант:
+\begin{equation}
+  \begin{cases}
+    \dot{r}=r(1-r^2)\\
+    \dot{\varphi}=1
+  \end{cases}
+\end{equation}
+Неустойчивый вариант:
+\begin{equation}
+  \begin{cases}
+    \dot{r}=r(r^2-1)\\
+    \dot{\varphi}=1
+  \end{cases}
+\end{equation}
+Полуустойчивый вариант:
+\begin{equation}
+  \begin{cases}
+    \dot{r}=r(1-r)^2\\
+    \dot{\varphi}=1
+  \end{cases}
+\end{equation}
+% \end{document}

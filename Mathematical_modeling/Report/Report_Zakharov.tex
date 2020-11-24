@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{caption}
+
+% \usepackage{color} \definecolor{darkgreen}{rgb}{0,0,0}
+% \usepackage[unicode,colorlinks,filecolor=blue,citecolor=darkgreen,pagebackref]{hyperref}
+
+\newtheorem*{exersize}{Упражнение}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{consequence}{Следствие}
+\newtheorem*{statement}{Statement}
+\newtheorem{property}{Property}
+\newtheorem*{fact}{Fact}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{problem}{Problem}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\setlength{\parindent}{5ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Mathematical modeling}
+\rhead{Kirill Zakharov}
+
+\title{Математическое моделирование}
+\author{Лектор: Лебедева Л.Н.\\Студент: Захаров К.А.}
+\date{2020 г.}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\section{Введение}
+
+\input{static_models.tex}
+\input{dynamic_models.tex}
+\input{Polar_coord.tex}
+\input{dynamic_models_2.tex}
+
+\begin{lemma}
+
+\end{lemma}
+
+\end{document}
