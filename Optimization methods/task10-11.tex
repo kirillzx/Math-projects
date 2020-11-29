@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[table]{xcolor}
+
+\newcolumntype{s}{>{\columncolor[HTML]{C05DFC}} c}
+% \cellcolor[HTML]{FFBF00}
+
+\setlength{\parindent}{0ex}
+\setlength{\headheight}{35pt}
+
+
+
+
+\lhead{Optimization theory}
+\rhead{Kirill Zakharov}
+
+\begin{document}
+\section*{Task 10 (Метод ветвей и границ)}
+Целевая функция и ограничения имеют следующий вид
+\begin{align}
+  &f = 10x_1-6x_2\to\max\notag\\
+  &x_1-8x_2\leq10\notag\\
+  &x_1+x_2\geq6\\
+  &x_1\geq2\notag\\
+  &x_2\leq4.99\notag\\
+  &x_1,x_2\geq0\notag
+\end{align}
+Решение данной задачи: $x^*=(49.92;4.99), f^*=469.26$ - не целые, поэтому применим метод ветвей и границ.
+Начнем с переменной $x_1$.
+\begin{enumerate}
+  \item $x_1\leqslant [x_1^*]=49$ и $x_1\geqslant [x_1^*]+1=50$
+    \begin{enumerate}
+      \item[1.1)] $f = 10x_1-6x_2\to\max; \;\text{constraints};\; x_1\leqslant 49$\\
+      $x_{1.1}^*=(49;4.875), f^*=460.75$\\
+      \begin{enumerate}
+        \item[1.1.1)]  $f = 10x_1-6x_2\to\max;\; \text{constraints};\; x_1\leqslant 49;\; x_2\leqslant 4$\\
+        $x_{1.1.1}^*=(42;4), f^*=396$\\
+        \item[1.1.2)]  $f = 10x_1-6x_2\to\max;\; \text{constraints};\; x_1\leqslant 49;\; x_2\geqslant 5$\\
+        $x_{1.1.2}^*\in\varnothing$\\
+      \end{enumerate}
+      \item[1.2)] $f = 10x_1-6x_2\to\max; \;\text{constraints};\; x_1\geqslant 50$\\
+      $x_{1.2}^*\in\varnothing$\\
+
+    \end{enumerate}
+  \item $x_2\leqslant [x_2^*]=4$ и $x_2\geqslant [x_2^*]+1=5$
+  \begin{enumerate}
+    \item[2.1)] $f = 10x_1-6x_2\to\max; \;\text{constraints};\; x_2\leqslant 4$\\
+    $x_{2.1}^*=(42;4), f^*=396$\\
+    \item[2.2)] $f = 10x_1-6x_2\to\max; \;\text{constraints};\; x_2\geqslant 5$\\
+    $x_{2.2}^*\in\varnothing$
+  \end{enumerate}
+\end{enumerate}
+Таким образом выбираем решение $x=(42; 4), f=396$.
+
+\section*{Task 11 (Метод Гомори)}
+Целевая функция и ограничения имеют следующий вид
+\begin{align}
+  &f = 10x_1-6x_2\to\max\notag\\
+  &x_1-8x_2\leq10\notag\\
+  &x_1+x_2\geq6\\
+  &x_1\geq2\notag\\
+  &x_2\leq4.99\notag\\
+  &x_1,x_2\geq0\notag
+\end{align}
+Приведем задачу к каноническому виду, добавив слабые и искусственные переменные.
+\begin{align}
+  &x_1-8x_2+y_1=10\notag\\
+  &x_1+x_2-y_2+R_1=6\notag\\
+  &x_1-y_3+R_2=2\notag\\
+  &x_2+y_4=4.99\\
+  &x_{1,2}\geqslant 0;\: y_j\geqslant 0\notag\\
+  &R_{1,2}\geqslant 0\notag
+\end{align}
+Найдем оптимальное решение при помощи двухэтапного метода.\\
+\begin{center}
+\includegraphics[scale=0.67]{images11/i1.png}
+\includegraphics[scale=0.67]{images11/i2.png}
+\includegraphics[scale=0.7]{images11/i3.png}
+\includegraphics[scale=0.7]{images11/i4.png}
+\end{center}
+Получили следующее оптимальное решение: $x_1=49.92, x_2=4.99, f= 469.26$. Решение не является целочисленным, поэтому
+применим метод Гомори. Из таблицы видно, что $x_2+y_4=4.99\Rightarrow x_2=4.99-y_4\Rightarrow 0.99-y_4\leqslant 0
+\Rightarrow 99-100y_4\leqslant 0\Rightarrow-100y_4+s_1=-99$. Добавим новое ограничение в оптимальное решение и применим двойственный симплекс-метод.
+\center{\includegraphics[scale=0.7]{images11/i5.png}}
+\end{document}

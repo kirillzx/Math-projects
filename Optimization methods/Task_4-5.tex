@@ -1,0 +1,200 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\setlength{\parindent}{5ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Optimization theory}
+\rhead{Kirill Zakharov}
+
+\begin{document}
+\section*{Task 4.6}
+
+\textbf{Условие:}
+\begin{align}
+&x_1-8 x_2\leqslant 10 \notag\\
+&x_1+x_2\geqslant 6\notag\\
+&x_1\geqslant 2\\
+&x_2 \leqslant 5\notag\\
+&x_{1,2}\geqslant0\notag\\
+&f=10x_1-6x_2\to \max \notag
+\end{align}
+
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    Каноническая форма:&\\
+    $x_1-8x_2+y_1= 10$&$\begin{pmatrix}1&-8&1&0&0&0\\1&1&0&-1&0&0\\1&0&0&0&-1&0\\0&1&0&0&0&1\end{pmatrix}
+    \times\begin{pmatrix}x_1\\x_2\\y_1\\y_2\\y_3\\y_4\end{pmatrix}
+    =\begin{pmatrix}10\\6\\2\\5\end{pmatrix} $\\
+    $x_1+x_2-y_2= 6$&\\
+    $x_1-y_3= 2$&\\
+    $x_2+y_4=5$&\\
+    $x_{1,2}\geqslant 0;\: y_j \geqslant 0$&\\
+    $f=10x_1-6x_2\to\max$&$\begin{pmatrix}10&-6\end{pmatrix}\times \begin{pmatrix}x_1\\x_2\end{pmatrix}\to\max$\\
+    \hline
+    Стандартная форма:&\\
+    $x_1-8x_2 \leqslant 10$&$\begin{pmatrix}1&-8\\-1&-1\\-1&0\\0&1\end{pmatrix}
+    \times\begin{pmatrix}x_1\\x_2\end{pmatrix}
+    \leqslant\begin{pmatrix}10\\-6\\-2\\5\end{pmatrix} $ \\
+    $-x_1-x_2 \leqslant -6$&\\
+    $-x_1 \leqslant -2$&\\
+    $x_2 \leqslant 5$&\\
+    $x_{1,2}\geqslant 0$&\\
+    $f=10x_1-6x_2\to\max$&$\begin{pmatrix}10&-6\end{pmatrix}\times \begin{pmatrix}x_1\\x_2\end{pmatrix}\to\max$\\
+    \hline
+  \end{tabular}
+\end{center}
+\subsection*{1. Метод штрафа}
+\begin{align}
+  &x_1-8x_2+y_1=10\notag\\
+  &x_1+x_2-y_2+R_1=6\notag\\
+  &x_1-y_3+R_2=2\notag\\
+  &x_2+y_4=5\\
+  &x_{1,2}\geqslant 0;\: y_j\geqslant 0\notag\\
+  &R_{1,2}\geqslant 0\notag\\
+  &F=10x_1-6x_2-M*R_1-M*R_2\to\max\notag
+\end{align}
+\includegraphics[scale=0.7]{task4_1-2.png}\\
+\includegraphics[scale=0.7]{task4_3-4.png}\\
+\includegraphics[scale=0.7]{task4_5.png}\\
+\begin{align}
+  &f=-10y_1-74y_4-30R_1-30R_2+470\\
+  &x_1=50;\:x_2=5;\:y_2=49;\:y_3=48;\:y_1=0;\:y_4=-45\notag
+\end{align}
+\subsection*{2. Двухэтапный метод}
+\begin{align}
+  &x_1-8x_2+y_1=10\notag\\
+  &x_1+x_2-y_2+R_1=6\notag\\
+  &x_1-y_3+R_2=2\notag\\
+  &x_2+y_4=5\\
+  &x_{1,2}\geqslant 0;\: y_j\geqslant 0;\: R_{1,2}\geqslant 0\notag\\
+  &f=10x_1-6x_2\to\max\notag\\
+  &R = R_1+R_2\to\min\notag
+\end{align}
+\subsubsection*{Первый этап}
+\includegraphics[scale=0.7]{task4_2_1.png}\\
+\subsubsection*{Второй этап}
+\includegraphics[scale=0.7]{task4_2_2.png}\\
+\includegraphics[scale=0.7]{task4_2_3.png}\\
+\includegraphics[scale=0.7]{task4_2_4.png}\\
+\begin{align}
+  &f=-10y_1-74y_4+470\\
+  &x_1=50;\:x_2=5;\:y_2=49;\:y_3=48;\:y_1=0;\:y_4=-45\notag
+\end{align}
+\section*{Task 5.6}
+\subsection*{Task 2.6}
+\textbf{Условие:}
+\begin{align}
+  &2x_1-x_2\leqslant8\notag\\
+  &-x_1+x_2\leqslant1\\
+  &-x_1+x_2\geqslant-1\notag\\
+  &f=-5x_1-2x_2\to\min\notag
+\end{align}
+Каноническая форма
+\begin{align}
+  &2x_1-x_2+y_1=8\to\lambda_1\notag\\
+  &-x_1+x_2+y_2=1\to\lambda_2\\
+  &x_1-x_2+y_3=1\to\lambda_3\notag\\
+  &f=-5x_1-2x_2\to\min\notag
+\end{align}
+Составим двойственную задачу
+\begin{align}
+ &\Phi=8\lambda_1+\lambda_2+\lambda_3\to\max\notag\\
+ &x_1:\: 2\lambda_1 -\lambda_2+\lambda_3 \leqslant -5\notag\\
+ &x_2:\: -\lambda_1 +\lambda_2-\lambda_3 \leqslant -2\\
+ &y_1:\: \lambda_1 \leqslant 0\notag\\
+ &y_2:\: \lambda_2 \leqslant 0\notag\\
+ &y_3:\: \lambda_3 \leqslant 0\notag
+\end{align}
+Целевая функция в оптимуме имеет вид:
+\begin{equation}
+  f=-65+9y_2+7y_1
+\end{equation}
+Решение
+\begin{align}
+  -7=\lambda_1-0\Rightarrow \lambda_1=-7\notag\\
+  -9=\lambda_2-0\Rightarrow \lambda_2=-9\\
+  0=\lambda_3-0\Rightarrow \lambda_3=0\notag
+\end{align}
+\newpage
+Проверка результата
+\begin{center}\includegraphics[scale=1]{task5_1.png}\end{center}
+% \subsection*{1.2. По стандартной форме}
+% \begin{align}
+%   &-2x_1+x_2\geqslant-8\to\lambda_1\notag\\
+%   &x_1-x_2\geqslant-1\to\lambda_2\\
+%   &-x_1+x_2\geqslant-1\to\lambda_3\notag\\
+%   &f=-5x_1-2x_2\to\min\notag
+% \end{align}
+%
+% Составим двойственную задачу
+% \begin{align}
+%  &\Phi=-8\lambda_1-\lambda_2-\lambda_3\to\max\notag\\
+%  &x_1:\: -2\lambda_1 +\lambda_2-\lambda_3 \leqslant -5\\
+%  &x_2:\: \lambda_1 -\lambda_2+\lambda_3 \leqslant -2\notag\\
+%  &\lambda_{1,2,3}\geqslant0\notag
+% \end{align}
+\subsection*{Task 4.6}
+\textbf{Условие:}
+\begin{align}
+  &x_1-8x_2\leqslant10\notag\\
+  &x_1+x_2\geqslant6\notag\\
+  &x_1\geqslant2\\
+  &x_2\leqslant5\notag\\
+  &f=10x_1-6x_2\to\max\notag
+\end{align}
+Каноническая форма
+\begin{align}
+  &x_1-8x_2+y_1=10\to\lambda_1\notag\\
+  &x_1+x_2-y_2=6\to\lambda_2\notag\\
+  &x_1-y_3=2\to\lambda_3\\
+  &x_2+y_4=5\to\lambda_4\notag\\
+  &f=10x_1-6x_2\to\max\notag
+\end{align}
+Целевая функция в оптимуме имеет вид:
+\begin{equation}
+  f=470-10y_1-74y_4
+\end{equation}
+Составим двойственную задачу
+\begin{align}
+ &\Phi=10\lambda_1+6\lambda_2+2\lambda_3+5\lambda_4\to\min\notag\\
+ &x_1:\: \lambda_1 +\lambda_2+\lambda_3 \geqslant 10\notag\\
+ &x_2:\: -8\lambda_1 +\lambda_2+\lambda_4 \geqslant -6\notag\\
+ &y_1:\: \lambda_1 \geqslant 0\notag\\
+ &y_2:\: \lambda_2 \leqslant 0\\
+ &y_3:\: \lambda_3 \leqslant 0\\
+ &y_4:\: \lambda_4 \geqslant 0\notag
+ % &\Rightarrow \Phi=10\lambda_1+6(\lambda_2^{''}-\lambda_2^{'})+2(\lambda_3^{''}-\lambda_3^{'})
+ % +5\lambda_4\to\min\notag\\
+ % &x_1:\: \lambda_1 +\lambda_2^{''}-\lambda_2^{'}+\lambda_3^{''}-\lambda_3^{'} \geqslant 10\notag\\
+ % &x_2:\: -8\lambda_1 +\lambda_2^{''}-\lambda_2^{'}+\lambda_4 \geqslant -6\notag
+\end{align}
+Решение
+\begin{align}
+  &10=\lambda_1-0=\lambda_1\notag\\
+  &0=\lambda_2-0=\lambda_2\\
+  &0=\lambda_3-0=\lambda_3\notag\\
+  &74=\lambda_4-0=\lambda_4\notag
+\end{align}
+% \subsection*{2.2. По стандартной форме}
+% \begin{align}
+%   &x_1-8x_2\leqslant10\to\lambda_1\notag\\
+%   &-x_1-x_2\leqslant-6\to\lambda_2\notag\\
+%   &-x_1\leqslant-2\to\lambda_3\\
+%   &x_2\leqslant5\to\lambda_4\notag\\
+%   &f=10x_1-6x_2\to\max\notag
+% \end{align}
+% Составим двойственную задачу
+% \begin{align}
+%  &\Phi=10\lambda_1-6\lambda_2-2\lambda_3+5\lambda_4\to\min\notag\\
+%  &x_1:\: \lambda_1 -\lambda_2-\lambda_3 \geqslant 10\\
+%  &x_2:\: -8\lambda_1 -\lambda_2+\lambda_4 \geqslant -6\notag\\
+%  &\lambda_{1,2,3,4}\geqslant0\notag
+% \end{align}
+\end{document}

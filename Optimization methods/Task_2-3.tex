@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+ \usepackage[left=3cm,right=3cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\setlength{\parindent}{5ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Optimization theory}
+\rhead{Kirill Zakharov}
+
+\begin{document}
+\section*{Task 2.6}
+
+\textbf{Условие:}
+\begin{gather}
+2x_1-x_2\leqslant 8 \notag\\
+-x_1+x_2\leqslant 1\\
+-x_1+x_2\geqslant -1\notag\\
+f=-5x_1-2x_2\to \min \notag
+\end{gather}
+Рассмотрим равенства и построим границы.
+\begin{gather}
+2x_1-x_2= 8 \notag\\
+-x_1+x_2= 1\\
+-x_1+x_2= -1\notag
+\end{gather}
+
+Чтобы найти минимальное значение функции, необходимо двигаться вдоль антиградиента.\\
+$grad\, f = \{\frac{\partial f}{\partial x_1};\frac{\partial f}{\partial x_2}\}=\{-5, -2\}\\
+\Rightarrow \overline{grad}\, f=-grad\, f=\{5, 2\}$\\
+
+Далее нарисуем границы выпуклой многогранной области, зададим линию уровня $f(x_1,x_2)=C$ и
+будем двигаться по направлению антиградиента, пока не окажемся в вершине области.
+\begin{center}
+\includegraphics[scale=0.65]{graphic_task2.png}\\
+\end{center}
+
+Таким образом минимальное решение есть точка пересечения двух ограничений $-x_1+x_2= 1 $ и $2x_1-x_2= 8 $.
+Решая систему получим\\
+\begin{equation}
+  \begin{cases}
+  -x_1+x_2= 1 \\
+  2x_1-x_2= 8
+\end{cases}
+\end{equation}
+$x_1=9;x_2=10\Rightarrow f = -65$
+
+\section*{Task 3.6}
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    Каноническая форма:&\\
+    $2x_1-x_2+y_1= 8$&$\begin{pmatrix}2&-1&1&0&0\\-1&1&0&1&0\\1&-1&0&0&1\end{pmatrix}
+    \times\begin{pmatrix}x_1\\x_2\\y_1\\y_2\\y_3\end{pmatrix}
+    =\begin{pmatrix}8\\1\\1\end{pmatrix} $\\
+    $-x_1+x_2+y_2= 1$&\\
+    $x_1-x_2+y_3= 1$&\\
+    $f=-5x_1-2x_2\to\min$&$\begin{pmatrix}-5&-2\end{pmatrix}\times \begin{pmatrix}x_1\\x_2\end{pmatrix}\to\min$\\
+    \hline
+    Стандартная форма:&\\
+    $-2x_1+x_2 \geqslant -8$&$\begin{pmatrix}-2&1\\1&-1\\-1&1\end{pmatrix}
+    \times\begin{pmatrix}x_1\\x_2\end{pmatrix}
+    \geqslant\begin{pmatrix}-8\\-1\\-1\end{pmatrix} $ \\
+    $x_1-x_2 \geqslant -1$&\\
+    $-x_1+x_2 \geqslant -1$&\\
+    \hline
+  \end{tabular}
+\end{center}
+$N=5; M=3\Rightarrow 3$ базисных переменных;$2$ свободные переменные.\\
+В качестве базисных выберем $y_1,y_2,y_3$
+\begin{align}
+&y_1=-2x_1+x_2+8 \notag\\
+&y_2=x_1-x_2+ 1\\
+&y_3=-x_1+x_2+1 \notag\\
+&f=-5x_1-2x_2\notag
+\end{align}
+
+1) $x_1=x_2=0;\,f=0;\,y_1=8;\,y_2=1;\,y_3=1$\\
+Наибольшее убывание функции $f$ просиходит по переменной $x_1\Rightarrow x_1 \to \infty$
+\begin{equation}
+  \begin{cases}
+  y_1=-2x_1+8=0\\
+  y_2=x_1+1=0\\
+  y_3=-x_1+1=0
+\end{cases};
+\begin{cases}
+  x_1=4 \\
+  x_1=-1 \\
+  x_1=1
+\end{cases}
+\end{equation}
+Выбираем наименьшее значение переменной $x_1$, ей соответсвует базисная переменная $y_3$. Меняем их местами
+$x_1 \to y_3;y_3\to x_1$. Теперь $x_1$ - базисная переменная, а $y_3$ - свободная переменная.\\
+$\Rightarrow$
+\begin{align}
+    &x_1=1-y_3+x_2 \notag \\
+    &y_1=-2(1-y_3+x_2)+8+x_2=6+2y_3-x_2 \\
+    &y_2=(1-y_3+x_2)+1+x_2=2-y_3\notag\\
+    &f = -5(1-y_3+x_2)=-5+5y_3-7x_2\notag
+\end{align}
+
+2) $y_3=x_2=0;\,f=-5;\,x_1=1;\,y_1=6;\,y_2=2$\\
+Функция $f$ убывает за счет переменной $x_2 \Rightarrow x_2 \to \infty$
+
+\begin{equation}
+  \begin{cases}
+  x_1=1+x_2=0\\
+  y_1=6-x_2=0\\
+  y_2=2-y_3
+\end{cases};
+\begin{cases}
+  x_2=-1 \\
+  x_2=6
+\end{cases}
+\end{equation}
+
+$x_2\to y_1;y_1\to x_2$
+\begin{align}
+  &x_2=6+2y_3-y_1\notag\\
+  &x_1=1-y_3+(6+2y_3-y_1)=7+y_3-y_1\\
+  &y_2=2-y_3\notag\\
+  &f=-5+5y_3-7(6+2y_3-y_1)=-47-9y_3+7y_1\notag
+\end{align}
+
+3) $y_1=y_3=0;\,f=-47;\,x_1=7;\,x_2=6;\,y_2=2$\\
+Теперь функция $f$ убывает по переменной $y_3\Rightarrow y_3\to \infty$
+\begin{equation}
+  \begin{cases}
+  x_2=6+2y_3=0\\
+  x_1=7+y_3=0\\
+  y_2=2-y_3=0
+\end{cases};
+\begin{cases}
+  y_3=-3 \\
+  y_3=-7\\
+  y_3=2
+\end{cases}
+\end{equation}
+$\Rightarrow y_3 \to y_2;y_2\to y_3$
+\begin{align}
+  &y_3=2-y_2\notag\\
+  &x_2=6+2(2-y_2)-y_1=10-2y_2-y_1\\
+  &x_1=7+(2-y_2)-y_1=9-y_2-y_1\notag\\
+  &f=-47-9(2-y_2)+7y_1=-65+9y_2+7y_1\notag
+\end{align}
+
+4) $y_1=y_2=0;\,f=-65;\,x_1=9;\,x_2=10;\,y_3=2$
+\end{document}
