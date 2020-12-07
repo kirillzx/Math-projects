@@ -6,6 +6,7 @@
 % \usepackage[T2A]{fontenc}
 % \usepackage[utf8]{inputenc}
 % \usepackage[english, russian]{babel}
+% \usepackage{caption}
 %
 % \newtheorem*{exersize}{Упражнение}
 % \newtheorem*{lemma}{Лемма}
@@ -157,4 +158,102 @@ $x_2$ - количество особей второго типа
     x_2=\dfrac{a_1b_{21}-a_2b_{11}}{b_{12}b_{21}-b_{22}b_{11}}
   \end{cases}\notag
 \end{gather}
+Определим состояние равновесия для каждой стационарной точки
+\begin{enumerate}
+  \item 1
+  \item 2
+\end{enumerate}
+
+\subsection{Модель Самуэльсона-Хикса}
+\subsubsection{Дискретная форма}
+Предполагается замкнутая экономика, предложение эластично, цены и процентная ставка фиксированы.
+Рассмотрим уравнение
+\begin{equation}
+  Y_{t+1}=C(Y_t)+I_t
+\end{equation}
+Пусть спрос зависит от $Y_t$ линейно, т.е. $C(Y_t)=C_a+cY_t$, а инвестиции равны $I_t=r(Y_t-Y_{t-1}) +I_a$, где
+$C_a$ - постоянное потребление, $I_a$ - постоянные инвестиции, $r$ - коэффициент акселерации, $c$ - склонность к потреблению.
+ $A=C_a+I_a$ - автономные расходы. Получим следующее конечно-разностное уравнение.
+ \begin{equation}
+   Y_{t+1}=C_a+I_a + cY_t + r(Y_t-Y_{t-1})
+ \end{equation}
+ Равновесие определим из предположения, что автономные расходы постоянны и объем ВВП стабилизируется на определенном уровне, т.е.
+ $Y_t=Y_{t-1}=...=Y_{t-n}=\widehat{Y}$. Тогда получим уравнение
+ \begin{equation}
+   \widehat{Y}=A + c\widehat{Y} + r(\widehat{Y}-\widehat{Y})=A+c\widehat{Y}
+ \end{equation}
+ $\Rightarrow \widehat{Y}=\dfrac{A}{1-c}$. Величина $\dfrac{1}{1-c}$ называется мультипликатором автономных расходов.
+
+Рассмотрим уровень дохода при изменения коэффициента акселерации:
+\begin{enumerate}
+
+
+\item Если $0<r<1$, то равновесие восстановится через некоторое время при новом уровне дохода.\\
+  % \begin{figure}[ht!]
+    \begin{center}
+      \includegraphics[scale=0.5]{images/s-h_1.jpg}
+    \end{center}
+  %   \caption{$0<r<1$}
+  % \end{figure}
+\item Если $r>1$, то при нарушении равновесия единожды, оно больше не восстановится.\\
+  % \begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_2.jpg}
+  \end{center}
+  %   \caption{$r>1$}
+  % \end{figure}\\
+\item Если $r=1$, то значение дохода будет колебаться с постоянным периодом.\\
+   % \begin{figure}[ht!]
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_3.jpg}
+  \end{center}
+  % \caption{$r=1$}
+  % \end{figure}\\
+\end{enumerate}
+\subsubsection{Непрерывная форма}
+Перейдя от конечных разностей получим следующее уравнение.
+\begin{equation}
+  \dfrac{\partial^2y}{\partial t^2}=-(1-r)\dfrac{\partial y}{\partial t}-(1-c)y+A
+\end{equation}
+Понизим порядок уравнения, приведя его к НСДУ.
+\begin{equation}
+  \begin{cases}
+    \dfrac{\partial y}{\partial t} = x\\
+    \dfrac{\partial x}{\partial t} = -(1-r)x-(1-c)y+A
+  \end{cases}
+\end{equation}
+Отсюда легко получить стационарную точку приравняв правые части к 0. Получим $x=0, y=\dfrac{A}{1-c}$.
+Определим состояния равновесия в стационарной точке при помощи корней характеристического уравнения. Составим матрицу Якоби.
+\begin{equation}
+  J(x, y) = \begin{pmatrix}
+    -(1-r)&-(1-c)\\1&0
+  \end{pmatrix}
+\end{equation}
+Найдем собственные значения при следующих параметрах:
+\begin{enumerate}
+  \item $r=1.2;c=0.8\Rightarrow \lambda_{1,2}=0.1\pm 0.435 i$.\\ Т.е. при $r>1$ получаем неустойчивый фокус.
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_8.png}
+  \end{center}
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_7.png}
+  \end{center}
+  \item $r=0.8;c=0.8\Rightarrow \lambda_{1,2}=-0.1\pm 0.435 i$.\\ При $0<r<1$ получаем устойчивый фокус.
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_6.png}
+  \end{center}
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_9.png}
+  \end{center}
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_10.png}
+  \end{center}
+  \item $r=1;c=0.8\Rightarrow \lambda_{1,2}=\pm 0.447 i$.\\ И наконец при $r=1$ получаем центр.
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_6.png}
+  \end{center}
+  \begin{center}
+    \includegraphics[scale=0.5]{images/s-h_5.png}
+  \end{center}
+\end{enumerate}
 % \end{document}
