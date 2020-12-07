@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[table]{xcolor}
+
+\setlength{\parindent}{0ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Optimization theory}
+\rhead{Kirill Zakharov}
+
+\begin{document}
+\section*{Нелинейная оптимизация}
+
+\section*{Task 12.6}
+\textbf{Условие}\\
+Дана функция двух переменных $f(x_1, x_2)$.\\
+a. Найти стационарную точку и вычислить в ней значение функции;\\
+b. Определить экстремум, если он есть; \\
+c. Проверить функцию на выпуклость/вогнутость.
+\begin{equation}
+  f = 18x_1-4x_1x_2+6x_2^2+16x_1-16x_2+2
+\end{equation}
+\textbf{Решение:}
+\begin{enumerate}
+  \item[a)] Найдем стационарную точку
+  \begin{gather}
+    \begin{cases}
+        \dfrac{\partial f}{\partial x_1}=0\\
+        \dfrac{\partial f}{\partial x_2}=0
+    \end{cases};
+    \begin{cases}
+      36x_1-4x_2+16=0\\
+      -4x_1+12x_2-16=0
+    \end{cases};\\
+    \begin{cases}
+      x_2=9x_1+4\\
+      -4x_1+12(9x_1+4)-16=0
+    \end{cases};
+    \begin{cases}
+      x_2=\dfrac{16}{13}\\
+      x_1=-\dfrac{4}{13}
+    \end{cases}\notag
+  \end{gather}
+  $\Rightarrow f(x_1,x_2)=18\dfrac{16}{169}+4\dfrac{4}{13}\dfrac{16}{13}+6\dfrac{16^2}{169}-16\dfrac{4}{13}-16\dfrac{16}{13}+2=
+  -\dfrac{134}{13}$
+  \item[b)] Составим матрицу Гессе
+  \begin{equation}
+    H_f(x_1,x_2)=\begin{pmatrix}
+      36&-4\\-4&12
+    \end{pmatrix}
+  \end{equation}
+  $M_1(H)=36,M_2(H)=416\Rightarrow$ Матрица Гессе положительно определенная, т.к. все угловые миноры положительны. Значит стационарная
+  точка $\big(-\dfrac{4}{13};\dfrac{16}{13}\big)$ является точкой минимума.
+  \item[c)] Из тех же соображений функция является выпуклой вниз.
+\end{enumerate}
+\begin{center}
+  \includegraphics[scale=0.6]{task12.png}
+\end{center}
+
+\section*{Task 13.6}
+\textbf{Условие}\\
+Дана функция трех переменных $f(x_1, x_2, x_3)$.\\
+a. Найти стационарную точку и вычислить в ней значение функции;\\
+b. Определить экстремум, если он есть; \\
+c. Проверить функцию на выпуклость/вогнутость.
+\begin{equation}
+  f = 4x_1^2+3x_2^2+2x_3^2+4x_1x_2-2x_1x_3-4x_2x_3+2x_1-3x_2+1
+\end{equation}
+\textbf{Решение:}
+\begin{enumerate}
+  \item[a)] Найдем стационарную точку
+  \begin{gather}
+    \begin{cases}
+        \dfrac{\partial f}{\partial x_1}=0\\
+        \dfrac{\partial f}{\partial x_2}=0\\
+        \dfrac{\partial f}{\partial x_3}=0
+    \end{cases};
+    \begin{cases}
+      8x_1+4x_2-2x_3+2=0\\
+      6x_2+4x_1-4x_3-3=0\\
+      4x_3-2x_1-4x_2=0
+    \end{cases};\\
+    \begin{cases}
+      16x_3-16x_2+4x_2-2x_3+2=0\\
+      6x_2+8x_3-8x_2-4x_3-3=0\\
+      x_1=2x_3-2x_2
+    \end{cases};
+    \begin{cases}
+      14x_3-12(2x_3-\dfrac{3}{2})+2=0\\
+      x_2=2x_3-\dfrac{3}{2}\\
+      x_1=2x_3-2x_2
+    \end{cases};\notag\\
+    \begin{cases}
+      x_3=2\\
+      x_2=\dfrac{5}{2}\\
+      x_1=-1
+    \end{cases}\notag
+  \end{gather}
+  $\Rightarrow f(x_1,x_2,x_3)=
+  -\dfrac{15}{4}$
+  \item[b)] Составим матрицу Гессе
+  \begin{equation}
+    H_f(x_1,x_2,x_3)=\begin{pmatrix}
+      8&4&-2\\4&6&-4\\-2&-4&4
+    \end{pmatrix}
+  \end{equation}
+  $M_1(H)=8,M_2(H)=32,M_3(H)=40 \Rightarrow$ Матрица Гессе положительно определенная, т.к. все угловые миноры положительны. Значит стационарная
+  точка $\big(-1;\dfrac{5}{2};2\big)$ является точкой минимума.
+  \item[c)] Из тех же соображений функция является выпуклой вниз.
+\end{enumerate}
+\end{document}
