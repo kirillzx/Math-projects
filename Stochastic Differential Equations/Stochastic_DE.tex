@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\setlength{\parindent}{5ex}
+\setlength{\headheight}{35pt}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+% \lhead{Stochastic differential equations}
+% \rhead{Kirill Zakharov}
+\title{Стохастические дифференциальные уравнения}
+\author{Кирилл Захаров}
+\date{2020}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Предварительные сведения}
+Пусть $(\Omega,\mathcal{F},P)$ - вероятностное пространство.$\xi=(\xi_1,...,\xi_n)$ - случайная последовательность.
+Пусть $\theta_k\xi=(\xi_{k+1},\xi_{k+2},...)$.
+\begin{definition}
+  $\xi $ называется стационарной в узком смысле, если $\forall k\geq1$ распределения $\theta_k\xi$ и $\xi$ совпадают
+  $P((\xi_1,\xi_2,...)\in B)=P((\xi_{k+1},\xi_{k+2},...)\in B), \: B\in\mathcal{B}(\mathbb{R}^{\infty})$.
+\end{definition}
+\begin{definition}
+  Пусть $ T$ - множество значений параметра $t$. Случайным процессом назовем параметризованный набор случайных величин
+   $\{ \xi_t\}_{t\in T}$, принимающих значения
+  в $\mathbb{R}^n$.
+\end{definition}
+\section{Уравнение Ито}
+\subsection{Винеровский процесс}
+Рассмотрим дискретную модель блуждания.
+\begin{equation}
+  x=x_0+\mu_0 n+\sigma_0\sqrt{n}\cdot\varepsilon
+\end{equation}
+Накопленное стохастическое изменение пропорционально нормальному распределению с параметрами 0 и 1, т.е.
+ $\varepsilon_1+...+\varepsilon_n=\sqrt{n}\cdot\varepsilon$, где $\varepsilon\sim N(0,1)$.
+Пусть $\Delta t$ - длительность одного шага, тогда количество шагов в момент $t-t_0$ равно $n=\dfrac{t-t_0}{\Delta t}$.
+Пусть $\sigma^2=\sigma_0^2/\Delta t$ и $\mu=\dfrac{\mu_0}{\Delta t}$. Получим следующее уравнение.
+\begin{equation}
+  x(t)=x(t_0)+\mu(t-t_0)+\sigma\sqrt{t-t_0}\cdot\varepsilon
+\end{equation}
+Ширина процесса $x(t)$ увеличивается со временем пропорционально корню $\sqrt{t-t_0}$, а максимум сдвигается со скоростью
+ $\mu$.
+ Рассмотрим изменение $dx=x(t)-x(t_0)$ за бесконечно малый интервал $dt=t-t_0$. Тогда получим
+ \begin{equation}
+   dx=\mu dt+\sigma \sqrt{dt}\cdot\varepsilon
+ \end{equation}
+ Обозначим $ \sqrt{dt}\cdot\varepsilon$ за $\delta W$. Данный процесс называется непрерывным винеровским процессом.
+\begin{equation}
+  dx=\mu dt+\sigma \delta W
+\end{equation}
+\subsection{Процесс Ито}
+Общие процессы Ито представляют собой "деформацию" простого винеровского блуждания при помощи функций
+$a(x,t)$ и $b(x,t)$.
+\begin{equation}
+  dx=a(x,t) dt+b(x,t) \delta W
+\end{equation}
+где $a(x,t)$-коэффициент сноса, $b(x,t)$ - коэффициент волатильности, $\delta W $ - бесконечно малый винеровский шум.
+Также $b^2(x,t)$ называют диффузией. Для моделирования процесса Ито воспользуемся формулой в конечно-разностном представлении.
+\begin{equation}
+  x_{k+1}=x_k+a(x_k,t_k)\Delta t+b(x_k,t_k)\sqrt{\Delta t}\cdot\varepsilon_k
+\end{equation}
+В произвольный фиксированный момент времени $x(t)$ - это случайная величина, свойства которой определяются при помощи
+ $\varepsilon$ и значения $t$.
+ \subsection{Лемма Ито}
+ \begin{equation}
+   dF=\bigg(\frac{\partial F}{\partial t}+a(x,t)\frac{\partial F}{\partial x}+
+   \frac{b^2(x,t)}{2}\frac{\partial^2 F}{\partial x^2}\bigg)dt+
+   b(x,t)\frac{\partial F}{\partial x}\delta W
+ \end{equation}
+Слагаемое перед $dt$ обозначим за $f(t)$, а перед $\delta W$ за $s(t)$
+Необходимо подобрать $F(x, t)$ так, чтобы функции $f(t), s(t)$ были зависимы только от $t$.
+В результате получим следующие выражения.
+\begin{align}
+  &\frac{\partial F}{\partial x}=\frac{s(t)}{b(x,t)}\\
+  &\frac{\partial F}{\partial t}+s(t)\bigg(\frac{a(x,t)}{b(x,t)}-\frac{1}{2}\frac{\partial b(x,t)}{\partial x}\bigg)=f(t)
+\end{align}
+Возьмём частные производные уравнения (8) по $t$ и (9) по $x$. Вычитая их, получим условие совместности
+\begin{equation}
+ \frac{1}{s(t)}\frac{\partial}{\partial t}\bigg\{\frac{s(t)}{b(x,t)}\bigg\}=
+ \frac{1}{2}\frac{\partial^2 b(x,t)}{\partial x^2}-\frac{\partial}{\partial x}\bigg\{\frac{a(x,t)}{b(x,t)}\bigg\}
+\end{equation}
+Если при данных $a(x,t)$ и $b(x,t)$ можно подобрать такую функцию $s(t)$,
+ при которой уравнение (10) обратится в тождество, то получим решение стохастического уравнения (5) в следующей неявной форме
+ \begin{equation}
+  F(x,t)=F(x_0,t_0)+\int_{t_0}^tf(\tau)d\tau + \bigg(\int_{t_0}^ts^2(\tau)d\tau\bigg)^{1/2}\cdot\varepsilon
+ \end{equation}
+
+ \section{Простые стохастические модели}
+ \subsection{Логарифмическое блуждание}
+Данный процесс также называется геометрическим броуновским блужданием и определяется уравнением (7).
+\begin{equation}
+dx=\mu x dt +\sigma x \delta W
+\end{equation}
+где $\mu, \sigma=const$. Если стохастический член равен 0 $\sigma=0$, то получаем уравнение экспоненциального пространство
+при $\mu>0$ и снижения при $\mu<0$.\\
+Здесь $a(x,t)=\mu x$ и $b(x,t)=\sigma x$. Подставим их в условие совместности.
+\begin{align}
+  &\frac{1}{s(t)}\frac{\partial}{\partial t}\bigg\{ \frac{s(t)}{\sigma x} \bigg\}=\notag
+  0-\frac{\partial \frac{\mu}{\sigma}}{\partial x}=0\\
+  &\Rightarrow \dot{s}(t)=0 \Rightarrow s=const\notag
+\end{align}
+Так как $s(t)$ равна любой константе, удобно ее взять равной $\sigma$, для более простого нахождения $F(x,t)$.
+Воспользуемся уравнением (8), проинтегрировав его. $\displaystyle \int \frac{\partial F}{\partial x}dx=
+\int\frac{\sigma}{\sigma x}dx\Rightarrow F(x,t)=ln(x)$. Теперь, зная $F(x,t)$ легко найти $f(t)$ по формуле (9).
+$\displaystyle f(t)=0+\sigma\bigg(\frac{\mu}{\sigma}-\frac{1}{2}\sigma\bigg)\Rightarrow f(t)=\mu-\sigma^2/2$.
+Далее воспользуемся уравнением (11) при $t_0=0$.
+\begin{align}
+  &F(x,t)=ln(x_0)+\int_{t_0}^t (\mu-\sigma^2/2)d\tau+\bigg(\int_{t_0}^t \sigma^2d\tau\bigg)^{1/2}\cdot\varepsilon=\notag\\
+  &=ln(x_0)+(\mu-\sigma^2/2)t+\sqrt{\sigma^2}\sqrt{t}\cdot\varepsilon\notag\\
+  &\Rightarrow ln(x)=ln(x_0)+(\mu-\sigma^2/2)t+\sigma\sqrt{t}\cdot\varepsilon\notag\\
+  &\Rightarrow x(t)=x_0\cdot e^{(\mu-\sigma^2/2)t+\sigma\sqrt{t}\cdot\varepsilon}\notag
+\end{align}
+
+\subsection{Процесс Орнштейна-Уленбека}
+Данный процесс задается следующим уравнением.
+\begin{equation}
+dx=-\beta(x-\alpha) dt +\sigma\delta W
+\end{equation}
+где $\sigma=const,\beta>0$ - характеризуется величину силы притяжения к равновесному состоянию $\alpha$
+Здесь $a(x,t)=-\beta(x-\alpha)$ и $b(x,t)=\sigma$. Подставим их в условие совместности.
+\begin{align}
+  &\frac{1}{s(t)}\frac{\partial}{\partial t}\bigg\{ \frac{s(t)}{\sigma} \bigg\}=\notag
+  0-\frac{\partial \frac{-\beta(x-\alpha)}{\sigma}}{\partial x}\\
+  &\Rightarrow \frac{1}{s(t)\sigma}\dot{s}(t)=\frac{\beta}{\sigma} \Rightarrow \dot{s}(t)=\beta s(t)\\
+  &\Rightarrow \ln{s(t)}=\beta t\Rightarrow s(t)=C e^{\beta t}\notag
+\end{align}
+Пусть $\displaystyle C=\sigma\Rightarrow \frac{\partial F}{\partial x}=\frac{s(t)}{b(x,t)}=e^{\beta t}\Rightarrow
+\int \frac{\partial F}{\partial x}dx=\int e^{\beta t} dx\Rightarrow F(x,t)=x\cdot e^{\beta t}+C_1$.
+Теперь, зная $F(x,t)$ найдем $f(t)$ по формуле (9).
+$\displaystyle f(t)=\beta x e^{\beta t}+\sigma e^{\beta t}\bigg(\frac{-\beta(x-\alpha)}{\sigma}-\frac{1}{2}\cdot 0\bigg)\Rightarrow
+ f(t)=\alpha\beta e^{\beta t}$.
+ Далее воспользуемся уравнением (11) при $t_0=0$.
+ \begin{align}
+   &F(x,t)=x_0e^{\beta t_0}+\int_{t_0}^t (\alpha\beta e^{\beta \tau})d\tau+\bigg(\int_{t_0}^t \sigma^2e^{2\beta \tau}d\tau\bigg)^{1/2}\cdot\varepsilon=\notag\\
+   &=x_0e^{\beta t_0}+\alpha\beta e^{\beta t}-\alpha+\sqrt{\frac{\sigma^2}{2\beta}e^{2\beta t}-\frac{\sigma^2}{2\beta}}\cdot\varepsilon\notag\\
+   & xe^{\beta t}=x_0+\alpha\beta e^{\beta t}-\alpha+\sqrt{\frac{\sigma^2}{2\beta}e^{2\beta t}-\frac{\sigma^2}{2\beta}}\cdot\varepsilon\\
+   & x(t)=x_0 e^{-\beta t}+\alpha-\alpha e^{-\beta t}+\frac{\sigma}{\sqrt{2\beta}}e^{-\beta t}\cdot \sqrt{e^{2\beta t}-1}\cdot\varepsilon=\notag\\
+   &\alpha+(x_0-\alpha)e^{-\beta t}+\frac{\sigma}{\sqrt{2 \beta}}\sqrt{1-e^{-2\beta t}}\cdot\varepsilon\notag
+ \end{align}
+ Если $\beta>0$, то среднее значение при $t\to\infty$ стремится к $\alpha$. Решение $x(t)$ находится в интервале шириной $2\dfrac{\sigma}{\sqrt{2\beta}}$. 
+\end{document}
