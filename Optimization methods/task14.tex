@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage[table]{xcolor}
+
+\setlength{\parindent}{0ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Optimization theory}
+\rhead{Kirill Zakharov}
+
+\begin{document}
+\section*{Нелинейная оптимизация}
+
+\section*{Task 14.6 (Условный экстремум)}
+\textbf{Условие}\\
+Дана функция трех переменных $f(x_1, x_2, x_3)$.\\
+a. Составить функцию Лагранжа;\\
+б. Определить стационарную точку и проверить ее на экстремум
+\begin{align}
+  &f = -5x_1^2-16x_2^2-15x_3^2+10x_1x_2+3x_1x_3-5x_2x_3+10x_1+13x_2+5x_3\notag\\
+  &2x_1-4x_2+5x_3=20\\
+  &3x_1+2x_2-3x_3=20\notag
+\end{align}
+\textbf{Решение}
+\begin{enumerate}
+  \item[a)] Составим функцию Лагранжа
+    $L(\Lambda, X)=-5x_1^2-16x_2^2-15x_3^2+10x_1x_2+3x_1x_3-5x_2x_3+10x_1+13x_2+5x_3+\lambda_1(2x_1-4x_2+5x_3-20)+
+    \lambda_2(3x_1+2x_2-3x_3-20)$
+  \begin{gather}
+    \begin{cases}
+        \dfrac{\partial L(\Lambda, X)}{\partial x_1}=-10x_1+10x_2+3x_3+10+2\lambda_1+3\lambda_2=0\\
+        \dfrac{\partial L(\Lambda, X)}{\partial x_2}=10x_1-32x_2-5x_3+13-4\lambda_1+2\lambda_2=0\\
+        \dfrac{\partial L(\Lambda, X)}{\partial x_3}=-30x_3+3x_1-5x_2+5+5\lambda_1-3\lambda_2=0\\
+        \psi_1(X)=2x_1-4x_2+5x_3-20\\
+        \psi_2(X)=3x_1+2x_2-3x_3-20
+    \end{cases}
+  \end{gather}
+    \item[b)]
+    \textbf{Способ 1:}
+  Решая систему (2), получим следующую стационарную точку, вектор параметров Лагранжа и значение функции в стационарной точке.
+\begin{align}
+  &Y=(x_1,x_2,x_3)=(\frac{93673}{12080};\frac{34333}{24160};\frac{3073}{1510})\approx (7.75439;1.42107;2.0351)\notag\\
+  &\Lambda=(\lambda_1,\lambda_2)=(\dfrac{300699}{24160};\dfrac{44969}{6040})\approx (12.4462;7.4452)\\
+  &f(x_1,x_2,x_3)=-\dfrac{7045871}{48320}\approx -145.817\notag
+\end{align}
+Найдем такие вектора для которых $grad \psi_j(Y)\cdot \delta X=0$
+\begin{align}
+  &j=1:2\delta x_1-4\delta x_2+5\delta x_3=0\\
+  &j=2:3\delta x_1+2\delta x_2-3\delta x_3=0\notag
+\end{align}
+Решим систему приняв $\delta x_3$ за параметр.
+\begin{equation}
+    \begin{cases}
+      2\delta x_1-4\delta x_2=-5\delta x_3\\
+      3\delta x_1+2\delta x_2=3\delta x_3
+    \end{cases};\\
+    \begin{cases}
+      \delta x_1=\dfrac{1}{8}\delta x_3\\
+      \delta x_2=\dfrac{21}{16}\delta x_3
+    \end{cases}
+\end{equation}
+Получили следующий вектор: $\delta X=(\dfrac{1}{8}\delta x_3;\dfrac{21}{16}\delta x_3;\delta x_3)$
+\begin{equation}
+  L_{XX}^{''}=\begin{pmatrix}
+    -10&10&3\\10&-32&-5\\3&-5&-30
+  \end{pmatrix}
+\end{equation}
+Теперь определим знак квадратичной формы $\delta X \cdot L_{XX}^{''} \cdot \delta X^T=-\dfrac{755}{8}\delta x_3^2<0\\
+\Rightarrow Y=(x_1,x_2,x_3)$ - точка максимума (по достаточному условию экстремума).
+\end{enumerate}
+\textbf{Способ 2:}
+\begin{equation}
+  H(\Lambda, X)=\begin{pmatrix}
+    0&0&2&-4&5\\0&0&3&2&-3\\2&3&-10&10&3\\-4&2&10&-32&-5\\5&-3&3&-5&-30
+  \end{pmatrix}
+\end{equation}
+Если $Y$ - точка максимума, то начиная с углового минора $M_{2M+1}$ последующие $N-M$ угловых миноров образуют знакочередующийся ряд, начиная со знака $(-1)^{2M+1}$.
+В задаче $N=3,M=2\Rightarrow$ необходимо посчитать угловой минор порядка 5 и проверить его знак. $M_5(H)=-24160$ и $(-1)^3=-1\Rightarrow$
+Точка $Y$ - точка максимума.
+
+\end{document}
