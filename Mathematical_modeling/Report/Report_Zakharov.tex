@@ -13,24 +13,24 @@
 
 \newtheorem*{exersize}{Упражнение}
 \newtheorem*{lemma}{Lemma}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Теорема}[section]
 \newtheorem*{consequence}{Следствие}
 \newtheorem*{statement}{Statement}
 \newtheorem{property}{Property}
 \newtheorem*{fact}{Fact}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+\newtheorem{definition}{Определение}[section]
 \newtheorem*{problem}{Problem}
 \newtheorem*{example}{Example}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
-\setlength{\parindent}{5ex}
+\setlength{\parindent}{0ex}
 \setlength{\headheight}{35pt}
-
-\lhead{Mathematical modeling}
-\rhead{Kirill Zakharov}
+%
+% \lhead{Mathematical modeling}
+% \rhead{Kirill Zakharov}
 
 \title{Математическое моделирование}
 \author{Лектор: Лебедева Л.Н.\\Студент: Захаров К.А.}
@@ -41,14 +41,40 @@
 \maketitle
 \tableofcontents
 \section{Введение}
+\textbf{Модель} - образ или прообраз какого-либо объекта или системы объектов, используемый в качестве их "заместителя".\\
+\textbf{Математическая модель} - описание объекта исследования на языке математики.\\
+Требования к модели:
+\begin{itemize}
+  \item адекватность
+  \item конечность
+  \item полнота(информированность)
+  \item упрощенность
+  \item гибкость
+  \item приемлемая трудоемкость разработки
+\end{itemize}
+Этапы построения модели:
+\begin{enumerate}
+  \item определение цели;
+  \item изучение предметной области, выявление причинно-следственных связей;
+  \item переход от концептуальной модели к формализованному описанию;
+  \item проверка адекватности моделирование;
+  \item корректировка модели;
+  \item применение модели. Проведение исследования и практическое использование.
+\end{enumerate}
+Классификация моделей:
+\begin{itemize}
+  \item линейные или нелинейные;
+  \item сосредоточенные и распределенные системы;
+  \item детерминированные или стохастические;
+  \item статические или динамические;
+  \item дискретные или непрерывные.
+\end{itemize}
 
 \input{static_models.tex}
 \input{dynamic_models.tex}
-\input{Polar_coord.tex}
 \input{dynamic_models_2.tex}
 
-\begin{lemma}
+\section{Оптимизационные модели}
 
-\end{lemma}
 
 \end{document}
