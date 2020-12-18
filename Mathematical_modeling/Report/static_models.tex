@@ -65,6 +65,15 @@
   ln{A}\sum_{i=1}^M\ln{L_i}+\alpha \sum_{i=1}^M\ln{K_i}\ln{L_i}+\beta\sum_{i=1}^M\ln{L_i}^2=\sum_{i=1}^M\ln{Y_i}\ln{L_i}
   \end{cases}
 \end{gather}
+Для решения данной модели воспользуемся средствами Excel.
+\begin{center}
+  \begin{tabular}{c}
+    \includegraphics[scale=0.45]{images/cd.png}\\
+    Рисунок 1 - Модель Кобба-Дугласа
+  \end{tabular}
+\end{center}
+По данным ВВП США получено решение для коэффициентов $\alpha, \beta, A$.
+
 
 \subsection{Модель Леонтьева (Межотраслевой баланс)}
 Пусть $x_{ij}$ - промежуточный продукт, т.е. отрасль $i$ изготавливает продукт для отрасли $j$\\
@@ -89,6 +98,23 @@ X_i=\sum_{j=1}^nx_{ij}+Y_i
  \begin{definition}
   Матрицей полных затрат называется обратная матрица Леонтьева $B=(E-A)^{-1}$
  \end{definition}
-
-
+На рисунках 2-3 представлено решение индивидуального задания по модели Леонтьева. В первом задание вычислены объемы конечно продукта при увеличение валового выпуска каждой отрасли на $10\%,50\%,20\%$ соответственно.
+ \begin{center}
+   \begin{tabular}{c}
+     \includegraphics[scale=0.45]{images/ib_1.png}\\
+     Рисунок 2 - Индивидуальное задание 1\\
+     \includegraphics[scale=0.45]{images/ib_2.png}\\
+     Рисунок 3 - Индивидуальное задание 2
+   \end{tabular}
+ \end{center}
+Во втором задании вычислены валовые выпуски отраслей по заданной матрице прямых затрат и вектору конечной продукции.
+На рисунках 4-5 показано решение на Python.
+\begin{center}
+  \begin{tabular}{c}
+    \includegraphics[scale=0.45]{images/ib_3.png}\\
+    Рисунок 4 - Модель Леонтьева\\
+    \includegraphics[scale=0.45]{images/ib_4.png}\\
+    Рисунок 5 - Индивидуальное задание
+  \end{tabular}
+\end{center}
 % \end{document}
