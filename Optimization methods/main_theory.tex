@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ, fancyhdr}
+\pagestyle{fancy}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\setlength{\parindent}{0ex}
+\setlength{\headheight}{35pt}
+
+\lhead{Optimization methods}
+\rhead{Kirill Zakharov}
+
+\newtheorem*{exersize}{Упражнение}
+
+\newtheorem{lemma}{Лемма}[section]
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem*{consequence}{Следствие}
+\newtheorem*{statement}{Утверждение}
+\newtheorem{property}{Свойство}
+\newtheorem*{fact}{Fact}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+\newtheorem*{problem}{Problem}
+\newtheorem*{example}{Пример}
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+
+\title{Методы оптимизации. Теоремы.}
+\author{Кирилл Захаров}
+\date{2021 г.}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Линейное программирование}
+\subsection{Базисное решение, допустимое множество, оптимальное решение}
+
+\begin{theorem}
+  Множество допустимых решений есть выпуклое множество.
+\end{theorem}
+\begin{lemma}
+  Базисные решения являются вершинами выпуклой многогранной области.
+\end{lemma}
+\begin{theorem}
+  Оптимальное решение является базисным решением. (Оптимальное решение лежит в углах выпуклой многогранной области).
+\end{theorem}
+\subsection{Двойственная задача}
+
+\begin{theorem}[Основное неравенство двойственности]
+  Пусть заданы прямая задача $D: X\;f(X)$ и двойственная $\Omega :\Lambda\;\varphi(\Lambda)$. Тогда для любых допустимых планов прямой и двойственной задачи их целевые функции связаны неравенствами.
+  \begin{align}
+    &f(X)\to\min \Rightarrow f(X)\geqslant \varphi (\Lambda)\\
+    &f(X)\to\max \Rightarrow f(X)\leqslant \varphi (\Lambda)\notag
+  \end{align}
+\end{theorem}
+\begin{theorem}[Критерий оптимальности Канторович]
+  Если на допустимых планах прямой  $X$ и двойственной задачи $\Lambda$ значения их целевых функций совпадают, то планы  $X$ и $\Lambda$ являются оптимальными и наоборот.
+\end{theorem}
+\begin{theorem}
+
+\end{theorem}
+
+\begin{theorem}
+Если прямая задача имеет оптимальное решение, то и двойственная имеет оптимальное решение.
+\end{theorem}
+
+\begin{theorem}
+Если прямая задача не имеет решения из-за неограниченности целевой функции, то система ограничений двойственной задачи противоречива.
+\end{theorem}
+
+\begin{theorem}[О дополняющей нежесткости]
+Необходимым и достаточным условием того, что прямая и двойственная задачи имеют оптимальное решение, является выполнение условий дополняющей нежесткости.
+\begin{align}
+  &\lambda_j\bigg(\sum_{i=1}^N a_{ji}x_i-b_j\bigg)=0\\
+  &x_i\bigg(\sum_{j=1}^M a_{ji}\lambda_i-c_i\bigg)=0\notag
+\end{align}
+\end{theorem}
+
+\section{Общая постановка задачи оптимизации}
+\subsection{Задача безусловной оптимизации}
+
+$x\in O\subseteq \mathbb{R}^N$
+\begin{definition}
+  $Y=(y_1,...,y_N)$ - точка локального минимума или максимума, если $\exists \;\varepsilon >0$, такое что выполняется
+   \begin{align}
+     &f(Y) \leqslant f(Y+\delta X)\text{ или }f(Y) \geqslant f(Y+\delta X)
+   \end{align}
+   для всех $\delta X=(\delta x_1,...,\delta x_N)\;\big|0<|\delta x_i|<\varepsilon$.
+\end{definition}
+\begin{definition}
+ $Y$ - точка строгого экстремума, если неравенства выполняются строго.
+\end{definition}
+\begin{definition}
+ $Y$ называется точкой глобального экстремума, если неравенства (3) выполняются во всей области.
+\end{definition}
+$\min{f(x)}=\max{-f(X)}$
+\begin{definition}
+Функция, имеющая единственный экстремум называется унимодальной.
+\end{definition}
+\begin{lemma}
+  Если область допустимых значений, определяемая системой ограничений равенств, содержит точку $Y$ и ее окрестность, то $M<N$.\\
+  \begin{equation}
+    Y\subseteq D\land U_{\varepsilon}(Y)\subseteq D\Rightarrow M<N
+  \end{equation}
+\end{lemma}
+\begin{lemma}
+  Пусть область допустимых значений, определяемая системой ограничений равенств задачи на условный экстремум, содержит хотя бы одну точку $Y$. Если набор градиентов $grad\: \psi_j$ линейно независим и $rank\: J=M<N$, то $D$ вместе с каждой точкой $X$ содержит некоторую непустую ее окрестность.
+\end{lemma}
+\begin{theorem}
+Пусть задана функция $f(x)$ и $x\in O=\mathbb{R}^1$. Если в точке $Y$ функция $f(x)$ имеет локальный экстремум, то $\displaystyle \frac{\partial f(Y)}{\partial x}=0$.
+\end{theorem}
+\begin{theorem}[Необходимое условие экстремума 1-го порядка]
+Пусть задана функция $f(X)$ и $X\in O=\mathbb{R}^N$. Пусть $Y$ точка локального экстремума. Тогда $grad\:f(Y)=0$.
+\end{theorem}
+
+\begin{theorem}[Критерий Сильвестра]
+  \item
+\begin{enumerate}
+  \item Матрица $A$ является положительно определенной $\iff$ когда все ее угловые миноры больше 0;
+  \item Матрица $A$ является отрицательно определенной $\iff$ когда все ее угловые миноры образуют знакочередующийся ряд, начиная со знака <<$-$>>;
+  \item Матрица $A$ является положительно полуопределенной $\iff$ $A$ вырождена и все ее главные миноры $m_i(A)\geqslant 0$;
+  \item Матрица $A$ является отрицательно полуопределенной $\iff$ $m_i(A)=0$ или $sign\:m_i(A)=sign\:(-1)^i$.
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[Необходимое условие экстремума 2-го порядка]
+Пусть задана функция $f(X)\;X\in\mathbb{R}^N$. Пусть  $f(X)$ дважды дифференцируема в окрестности точки $Y$. Тогда если $Y$ - точка локального минимума (максимума), то $H_f(Y)$ положительно полуопределенная (отрицательно полуопределенная).
+\end{theorem}
+\begin{theorem}[Достаточное условие экстремума 2-го порядка]
+Пусть задана функция $f(X)\;X\in\mathbb{R}^N$. Пуста $f(X)$ имеет стационарную точку, в которой вторые частные производные существуют и непрерывны. Если $H_f(Y)$ положительно определена (отрицательно определена), то $Y$ точка минимума (максимума).
+\end{theorem}
+\begin{theorem}
+  \item
+  \begin{enumerate}
+    \item Пусть $f(X)$ дифференцируема в точке $Y\in\mathbb{R}^N$. \\Тогда если $\delta X\in\mathbb{R}^N \:\big| grad\:f(Y)\cdot \delta X <(>)0
+  \Rightarrow \delta X \in W_-(Y,f)(W_+(Y,f))$;
+  \item Если $\delta X \in W_-(Y,f)(W_+(Y,f))$. Тогда  $grad\:f(Y)\cdot \delta X \leqslant(\geqslant)0$.
+  \end{enumerate}
+\end{theorem}
+\subsection{Задача условной оптимизации}
+\begin{theorem}[Связь между $W_{+/-}(Y,f)$ и $V(Y,f)$]
+Если точка $Y$ точка локального минимума (максимума), то $W_-(Y,f)\cap V(Y,f)= \varnothing \;(W_+(Y,f)\cap V(Y,f)= \varnothing) $.
+\end{theorem}
+\begin{theorem}[Вейерштрасс]
+  Пусть $D$ - компакт и $f(X)$ непрерывная функция определенная на $D$.\\
+  Тогда существует точка $Y$ глобального минимума (максимума).
+\end{theorem}
+
+\end{document}
